@@ -138,7 +138,9 @@ public class PlayFabUserMgtTMP : MonoBehaviour
         }, OnError);
     }
 
-    void DisplayFriends(List<FriendInfo> friendsCache) { friendsCache.ForEach(f => Debug.Log(f.FriendPlayFabId)); }
+    void DisplayFriends(List<FriendInfo> friendsCache) { friendsCache.ForEach(
+        f => UpdateMsg(f.FriendPlayFabId)); 
+    }
 
     public void AddFriend()
     {

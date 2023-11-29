@@ -24,8 +24,6 @@ public class GameController : MonoBehaviour {
     public Text gameOverText;
     public Text restartText;
     public Text mainMenuText;
-    public GameObject showlb;
-    public GameObject sendjson;
     public GameObject gleaderboard;
     public GameObject nleaderboard;
 
@@ -58,8 +56,6 @@ public class GameController : MonoBehaviour {
         xp = 0;
         level = 0;
         dt = System.DateTime.Now.ToString();
-        showlb.SetActive(false);
-        sendjson.SetActive(false);
         gleaderboard.SetActive(false);
         nleaderboard.SetActive(false);
         StartCoroutine(spawnWaves());
@@ -77,8 +73,8 @@ public class GameController : MonoBehaviour {
         {
             if (Input.GetKey(KeyCode.R))
             {
-                showlb.SetActive(false);
-                sendjson.SetActive(false);
+                gleaderboard.SetActive(false);
+                nleaderboard.SetActive(false);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
             else if (Input.GetKey(KeyCode.Q))
@@ -162,14 +158,13 @@ public class GameController : MonoBehaviour {
     public void gameIsOver()
     {
         gameOverText.text = "Game Over";
-        showlb.SetActive(true);
-        sendjson.SetActive(true);
         gleaderboard.SetActive(true);
         nleaderboard.SetActive(true);
         dt = System.DateTime.Now.ToString();
         updateDt();
         gameOver = true;
         SendJSON();
+        OnButtonSendLeaderboard();
     }
 
     public void addScore(int score)
